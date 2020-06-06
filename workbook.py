@@ -39,3 +39,28 @@ def matrix_add(a : Matrix, b : Matrix) -> Matrix:
 
 
     return c
+#############################################
+# Scalar Multiplication - Multiplying the entire matrix by a scalar (real or complex #)
+# Associativity: x(yA) = (xy)A
+# Distributivity over matrix addition : x(A + B) = xA + xB
+# Distributivity over scalar addition : (x + y)A = xA + yA
+#############################################
+# input :
+# 1. A scalar x
+# 2. An n x m matrix A
+#############################################
+# Output:
+# Return n x m  matrix (xA)
+#############################################
+@exercise
+def scalar_mult(x : complex, a : Matrix) -> Matrix:
+    rows = len(a)
+    columns = len(a[0])
+
+    c - create_empty_matrix(rows, columns)
+
+    for i in range(rows):
+        for j in range(columns):
+           c[i][j] = a[i][j] * x
+    
+    return c
