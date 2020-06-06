@@ -22,5 +22,20 @@ Matrix = List[List[complex]]
 @exercise
 def matrix_add(a : Matrix, b : Matrix) -> Matrix:
     # Size of matrix
-    row = len(a)
+    rows = len(a)
     columns = len(a[0])
+
+    #Init matrix
+    c = create_empty_matrix(rows, columns)
+
+    for i in range(rows): 
+        for j in range(columns):
+            #Access elements
+            x = a[i][j]
+            y = b[i][j]
+            
+            #Modify elements
+            c[i][j] = a[i][j] + b[i][j]
+
+
+    return c
