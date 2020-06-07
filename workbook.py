@@ -201,3 +201,92 @@ def is_matrix_unitary(a : Matrix) -> bool:
                     return False
             
             return True
+#############################################
+# Inner product - A matrix multiplied by anothers adjoint
+# Vector norm = ||V|| = sqrt(<V,V>)
+# Vector normalization - Occurs when vector norm is equal to one
+#############################################
+@exercise
+def inner_prod(v : Matrix, w : Matrix) -> complex:
+    # Calculate the adjoint of the v vector
+    adjointV = adjoint(v)
+
+    # Multiply the adjoint v and w. The result will be a matrix with only one element
+    resultMatrix = matrix_mult(adjointV, w)
+
+    # To get the actual complex number, we have to take one element from the multiplication result
+    return resultMatrix[0][0]
+#############################################
+#############################################
+@exercise
+def normalize(v : Matrix) -> Matrix:
+    norm = math.sqrt(inner_prod(v, v).real)
+
+    n = len(v)
+    ans = create_empty_matrix(n, 1)
+
+    # Divide each element of the vector by the norm
+    for i in range(n):
+        ans[i][0] = v[i][0] / norm
+
+    return ans
+#############################################
+#############################################
+# Outer product
+# Inputs:
+# An n x 1 vector V
+# An m x 1 vector W
+# Output :
+# Return an n x m  matrix that represents the outer product of V and W
+@exercise
+def outer_prod(v : Matrix, w : Matrix) -> Matrix:
+    # Calculate adjoint of the W
+    adjointW = adjoint(w)
+
+    # Multiply V by W adjoint
+#############################################
+# Tensor Product - Multiplies the second matrix by every element of the first matrix
+# Input :
+# An n x m  matrix A
+# An k x l  matrix B
+# Output :
+# Return (n * k) * (m * l) matrix A tensor B [ tensor product of a and b]
+#############################################
+#############################################
+@exercise
+def tensor_product(a : Matrix, b : Matrix) -> Matrix:
+    aRows = len(a) # the number of rows for matrix a
+    aColumns = len(a[0]) # the number of columns for matrix a
+    bRows = len(b) # the number of rows for matrix b
+
+    ans = create_empty_matrix(aRows * bRows, aColumns * bColumns)
+
+    # Outer pair of loops, iterating tough the elements of the left matrix
+    for i in range(aRows):
+        for j in range(aColumns):
+            # inner pair of loops, iterating through the elements of the right matrix
+            for k in range(bRows)
+                for l in range(bColumns)
+                    ans[i * bRows + k][j * bColumns + 1] = a[i][j] * b[k][l]
+    return ans
+#############################################
+#############################################
+# Given a nonzero (n x n) matrix "A"
+# A nonzero vector V
+# And a scalar x
+# if AV = xV then "x" is an eigenvalue of A
+# And V is an eigenvector of A corrensponding to that eigenvalue
+# Inputs L
+# 1. A real valued n x n matrix A
+# 2. An eigenvector V of matrix A
+# Output : Return a real number - the eigenvalue of A that is associated with the given eigenvector
+from pytest import approx
+
+@exercise
+def find_eigenvalue(a : Matrix, v : Matrix) -> float:
+    n = len(v)
+    multiplied = matrix_mult(a, v)
+
+    for i in range(n):
+        if (v[i][0] != aprrox(0)):
+            return multiplied[i][0] / v[i][0]
