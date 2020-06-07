@@ -165,3 +165,39 @@ def adjoint(a : Matrix) -> Matrix:
     ans = conjugate(transp)
 
     return ans
+#############################################
+# Unitary Verification - A matrix is unitary when it is invertible
+# Its inverse is equal to its adjoint : (U ** -1) = (U ** t)
+# Input :
+# An n x n  matrix A
+# Output :
+# Check if the matrix is unitary and return True if it is, or False if it isnt
+#############################################
+# 1. Calculate the adjoint of the input matrix
+# 2. Multiply it by the input matrix
+# 3. Check if the multiplication result is equal to an identity matrix
+#############################################
+from pytest import approx 
+@exercise
+def is_matrix_unitary(a : Matrix) -> bool:
+    n = len(a)
+
+    #Calculate the adjoint matrix
+    adjointA = adjoint(a)
+
+    #Multiply the adjoint matrix by the input matrix
+    multipliedMatrix = matrix_mult(a, adjointA)
+
+    #Check whether the multiplication result is (approximiatley) identity matrix
+    for i in range(n):
+        for j in range(n):
+            #An identity matrix has 1's in all the places where the row index and column index are equal...
+            if i == j:
+                if multipliedMatrix[i][j] != approx(1):
+                    return False
+            # and zeros in all the places where the row index and column index are different
+            else:
+                if multipliedMatrix[i][j] != approx(0):
+                    return False
+            
+            return True
