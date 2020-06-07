@@ -137,3 +137,31 @@ def transpose(a : Matrix) -> Matrix:
             ans[j][i] = a[i][j]
 
     return ans
+#############################################
+# Matrix Conjugate - Take the conjugate of every element of the matrix
+# Input :
+# An  n x m matrix A
+# Output :
+# Return an n x m  matrix A, the conjugate of A
+@exercise
+def conjugate(a : Matrix) -> Matrix:
+    rows = len(a)
+    columns = len(a[0])
+
+    ans = create_empty_matrix(rows, columns)
+
+    for i in range(rows):
+        for j in range(columns):
+            ans[i][j] = complex(a[i][j].real, -a[i][j].imag)
+    
+    return ans
+#Adjoint - performing both transpose and conjugate on a matrixkl
+#############################################
+@exercise
+def adjoint(a : Matrix) -> Matrix:
+    #Transpose function with the input matrix a
+    transp = transpose(a)
+
+    ans = conjugate(transp)
+
+    return ans
