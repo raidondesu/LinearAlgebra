@@ -290,3 +290,24 @@ def find_eigenvalue(a : Matrix, v : Matrix) -> float:
     for i in range(n):
         if (v[i][0] != aprrox(0)):
             return multiplied[i][0] / v[i][0]
+
+# Inputs:
+# 1. A 2 x 2 matrix A
+# 2. An eigenvalue x of matrix A
+# Output :
+# Return any non-zero eigenvector of A that is associated with X
+@exercise
+def find_eigenvector(a : Matrix, x : float) -> Matrix:
+    # check for possible edge cases
+    if(a[0][1] == 0):
+        if(a[0][0] - x == 0):
+            if(a[1][0] == 0):
+                return [[1], [0]]
+            else:
+                return [[(a[1][1] - x) / (-a[1][0])], [1]]
+            else:
+                return [[0], [1]]
+        
+        v0 = 1
+        v1 = (a[0][0] - x) / (-a[0][1])
+        return [[v0], [v1]]
